@@ -172,12 +172,13 @@ const story = [
         try {
           var lasers = eval(`(${code})`)(...input);
           if (lasers === 'pass') return true;
-          result = (lasers() === 20) && (lasers() === 40);
+          lasers();
+          result = lasers() === 40;
           if (!result) {
-            message = `returned: ${result}, expected: ${expected}`;
+            message = 'error';
             passed = false;
           } else {
-            passed = true;
+            return true;
           }
         } catch (e) {
           message = e.message;
@@ -213,6 +214,7 @@ const story = [
           } else {
             passed = true;
           }
+        } catch (e) {
           message = e.message;
           passed = false;
         } finally {
