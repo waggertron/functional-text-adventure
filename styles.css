@@ -110,4 +110,5 @@ h1 {
 #error {
   color: orangered;
   background: lightgray;
+  font-weight: 800; 
 }
