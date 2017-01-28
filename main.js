@@ -6,15 +6,48 @@ const story = [
     test: {
       args: [["cloth", "binoculars", "spaceGum", "laserRifle"]],
       expected: 1,
+      testFunc: function test(code, input, expected) {
+        var passed, result, message;
+        try {
+          result = eval(`(${code})`)(...input);
+          if (result !== expected) {
+            message = `returned: ${result}, expected: ${expected}`;
+            passed = false;
+          }
+        } catch (e) {
+          message = e.message;
+          passed = false;
+        } finally {
+          if (!passed) {
+            updateError(message);
+          }
+          return passed;
+        }
+      },
     },
-  },
   {
-    storyText: "'wow a crashed B198 fighter, thats an alliance ship, hmm it could have some valuable salvage.' ",
-    instructions: '',
-    example: '',
+    storyText: "'wow a crashed B198 fighter, thats an alliance ship, hmm it could have some valuable salvage. Theres Sand Rats out there though, I should grab my rifle out of the garage' ",
+    instructions: 'write a function grabLongRifle that accepts and array of objects and returns the object with the ',
+    example: `
+    grabLongRifle([ 
+      { 
+        item: 'toy', 
+        type: 'long rifle' 
+      }
+      { 
+        item: 'weapon', 
+        type: 'long rifle' 
+      }, 
+      {
+         item: 'clothing', 
+         type: 'medal of bavery' 
+      }
+      ]) => { item: 'weapon', type: 'long rifle' };
+    `,
     test: {
-      args: [],
+      args: [{ item: 'container', type: 'fuel can' }, { item: 'weapon', type: 'long rifle' }, { item: 'clothing', type: 'medal of bavery' }, { item: 'toy', type: 'long rifle' }, { item: 'weapon', type: 'short rifle' }, { item: 'tool', type: 'hammer' }],
       expected: 12,
+      func: 
     },
   },
   {
@@ -153,30 +186,11 @@ function updateError(error) {
   $error.fadeOut().text('');
   $error.append(error).fadeIn();
 }
-function testInput(index) {
+function testInput() {
   var code = getCode();
   var input = clone(currentPoint().test.args);
-  var expected = currentPoint().test.expected.toString();
-  return test(code, input, expected);
-}
-function test(code, input, expected) {
-  var passed, result, message;
-  try {
-    result = eval(`(${code})`)(...input);
-    if (result !== expected) {
-      message = `returned: ${result}, expected: ${expected}`;
-      passed = false;
-    }
-  } catch (e) {
-    message = e.message;
-    passed = false;
-  } finally {
-    if (!passed) {
-      updateError(message);
-    }
-    return passed;
-  }
-  // return passed;
+  var expected = currentPoint().test.expected;
+  return testFunc(code, input, expected);
 }
 function saveInput() {
   inputs.push(getCode());
