@@ -362,7 +362,6 @@ const story = [
           if (result == 'pass') {
             return true;
           }
-          result();
           result('prepare');
           result('unlock');
           result('aim');
