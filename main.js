@@ -305,8 +305,8 @@ const story = [
     instructions: 'Instructions: Write a function named getCoords that accepts an array of objects, each object will contain a property sectorName, which will be a string, and a sectors property which will be an array of objects . find the object within the sectors array of Rigel and then find the fifth object in that array (index 4). lastly return the value of the property "Vitas" which will be a string containing the coordinates to the rebel base',
     example: `(if we were looking for Rigel 1 Vitas getCoords([{sectorName: "Mingus", sectors:[{...}{...}]},{sectorName: 'Rigel', sectors: [{Vitas: "x: 1, y: 2, z:3" }]}]) => "x: 1, y: 2, z: 3"`,
     test: {
-      args: [[{ sectorName: 'Rigel', sectors: [{}, {}, {}, {}, { Vitas: "x: 0, y: 0, z: 0" }] }]],
-      expected: "x: 0, y: 0, z: 0",
+      args: [[{ sectorName: 'Rigel', sectors: [{}, {}, {}, {}, { Vitas: "x0, y0, z0" }] }]],
+      expected: "x0, y0, z0",
       testFunc: function (code, input, expected) {
         var passed, result, message;
         try {
