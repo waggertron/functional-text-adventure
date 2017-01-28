@@ -349,7 +349,7 @@ const story = [
     The second time with the string 'unlock'., 
     The third time with the string 'aim' 
     and the fourth time with the string 'launch'. 
-    If the wrong strings are passed or they are passed in the wrong, the function should return 'FAILED' and start the count and sequence over again.
+    If the wrong strings are passed or they are passed in the wrong order, the function should return 'FAILED' and start the count and sequence over again.
     If the commands are put in the correct order, the 4th call should return 'LAUNCHED'`,
     example: `var command = prepareEscapePod(); command('prepare');  command('unlock');   command('aim');   command('launch') => 'LAUNCHED'`,
     test: {
