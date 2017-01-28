@@ -197,8 +197,8 @@ const story = [
     "Uh Admiral, we have a few more"
     17 ships blipped on the radar.
     "An entire squadron? Zep those plans of yours must be valuable. We need to double the  reactor output."`,
-    instructions: 'write a function doubleEnginePower that accepts an array numbers and returns a new array. Each element in the array should be doubled if the doubled values is less than or equal to 100. If the doubled value would be greater than 100 keep the value the same.',
-    example: 'doubleEnginePower([12, 52, 40]) => [14, 52, 80]',
+    instructions: 'Write a function doubleEnginePower that accepts an array numbers and returns a new array. Each element in the array should be doubled if the doubled values is less than or equal to 100. If the doubled value would be greater than 100 keep the value the same.',
+    example: 'doubleEnginePower([12, 52, 40]) => [24, 52, 80]',
     test: {
       args: [[50, 51, 99]],
       expected: JSON.stringify([100, 51, 99]),
@@ -207,7 +207,7 @@ const story = [
         try {
           result = eval(`(${code})`)(...input);
           if (result === 'pass') return true;
-          if (result !== expected) {
+          if (JSON.stringify(result) !== expected) {
             message = `returned: ${result}, expected: ${expected}`;
             passed = false;
           } else {
@@ -242,7 +242,7 @@ const story = [
         try {
           result = eval(`(${code})`)(...input);
           if (result === 'pass') return true;
-          if (result !== expected) {
+          if (JSON.stringify(result) !== expected) {
             message = `returned: ${result}, expected: ${expected}`;
             passed = false;
           } else {
@@ -267,7 +267,7 @@ const story = [
     The only way out of this was to shake the projectile.
     "ok Bertha, let's see how limber you still are"
     `,
-    instructions: `Instructions: write a function shakeTorpedo that accepts two strings, height and side. if the input is  'top', 'left ', the function should return the concated string 'bottom right'`,
+    instructions: `Instructions: write a function shakeTorpedo that accepts two strings, height and side. if the input is  'top', 'left ', the function should invert the directions and return the concated string 'bottom right'`,
     example: `shakeTorpedo('bottom', 'left') => 'top right'`,
     test: {
       args: ['bottom', 'right'],
@@ -302,8 +302,8 @@ const story = [
     "Alright Dayton, we need to get this to the Rebel base on Vitas in the Rigel 5 sector" 
     "Let's locate it"
     `,
-    instructions: 'Instructions: Write a function that accepts an array of objects, each object will contain a property sectorName, which will be a string, and a sectors property which will be an array of objects . find the object within the sectors array of Rigel and then find the fifth object in that array (index 4). lastly return the value of the property "Vitas" which will be a string containing the coordinates to the rebel base',
-    example: `(if we were looking for Rigel 1 Vitas [{sectorName: "Mingus", sectors:[{...}{...}]},{sectorName: 'Rigel', sectors: [{Vitas: "x: 1, y: 2, z:3" }]}]) => "x: 1, y: 2, z: 3"`,
+    instructions: 'Instructions: Write a function named getCoords that accepts an array of objects, each object will contain a property sectorName, which will be a string, and a sectors property which will be an array of objects . find the object within the sectors array of Rigel and then find the fifth object in that array (index 4). lastly return the value of the property "Vitas" which will be a string containing the coordinates to the rebel base',
+    example: `(if we were looking for Rigel 1 Vitas getCoords([{sectorName: "Mingus", sectors:[{...}{...}]},{sectorName: 'Rigel', sectors: [{Vitas: "x: 1, y: 2, z:3" }]}]) => "x: 1, y: 2, z: 3"`,
     test: {
       args: [[{ sectorName: 'Rigel', sectors: [{}, {}, {}, {}, { Vitas: "x: 0, y: 0, z: 0" }] }]],
       expected: "x: 0, y: 0, z: 0",
