@@ -32,7 +32,7 @@ const story = [
   },
   {
     storyText: `"Wow a crashed B198 fighter, haven't seen one of those in ages. It could have some valuable salvage. There's Sand Rats out there though, I should grab my rifle out of the garage."`,
-    instructions: `Write a function grabLongRifle that accepts an array of objects and returns the index of the object with the type property of 'weapon' AND the item property of 'long rifle'`,
+    instructions: `Write a function grabLongRifle that accepts an array of objects and returns the index of the object whose "type" has the value "weapon" AND the "item" property has the value "long rifle"`,
     example: `
     grabLongRifle([ 
       { 
@@ -57,8 +57,9 @@ const story = [
         try {
           result = eval(`(${code})`)(...input);
           if (result == 'pass') {
-            passed = true;
-          } else if (JSON.stringify(result) !== expected) {
+            return true;
+          }
+          if (result !== expected) {
             message = `returned: ${result}, expected: ${expected}`;
             passed = false;
           } else {
@@ -78,7 +79,7 @@ const story = [
   },
   {
     storyText: `I finally arrived at the crash site, it's a smoldering crater strewn with debris. But the main fuselage is still intact, inside there are usually palladium circuits, I should try and get this door open. As I got to the door I heard a noise. "Hello?! is somebody out there? The door is stuck" a voice from inside the craft echoed. "yeah hey hold on, let me give it a whirl" A firm tug on the fuselage door, it buckled slightly. "Ok I think I can force it open but I need your help, push from yourside on the count of three."`,
-    instructions: `write a function onThree that accepts and array of strings, loops through that array and returns the index of the string 'three'`,
+    instructions: `write a function onThree that accepts an array of strings, loops through that array and returns the index of the string 'three'`,
     example: `onThree(['ready', 'set', 'one', 'two', 'three', 'go']) => 4`,
     test: {
       args: [['ok', 'get', 'ready', 'set', 'one', 'two', 'three', 'go']],
@@ -87,9 +88,8 @@ const story = [
         var passed, result, message;
         try {
           result = eval(`(${code})`)(...input);
-          if (result == 'pass') {
-            passed = true;
-          } else if (result !== expected) {
+          if (result == 'pass') return true;
+          if (result !== expected) {
             message = `returned: ${result}, expected: ${expected}`;
             passed = false;
           } else {
@@ -109,8 +109,8 @@ const story = [
   },
   {
     storyText: `The door swung open as we forced in unison. 
-    The poured in and highlit the face a baby faced young man, in a pilot jumpsuit. 
-    "Bless the stars! I would have died in this heap. Zep Branigan's the name, lieutenant of the 6th Rebel brigade."   
+    The light poured in and highlighted a baby faced young man, in a pilot jumpsuit. 
+    "Bless the stars! I would have died in this heap. Zep Branigan is the name, lieutenant of the 6th Rebel brigade."   
       "You're a lucky one Zep, Pleasure to meet you, Dayton Stardust" The young pilot's eyes widened. 
       "The Dayton Stardust?! Admiral Dayton Stardust?" Zeps hand shot to a salute.
       "That was a long time ago, ain't my war anymore" 
@@ -125,11 +125,11 @@ const story = [
        "Admiral .... I Think we have company" Zep pointed to the skyline, two Federation Crown fighters dotted the horizon.
        "We best get this ol' beast started then"
        `,
-    instructions: `write a function intiateLaunch that accepts four boolean parameters primed, landingGearExtended, coreActivate, shieldsEngaged that returns "Launching" if primed, coreActivate, and shieldsEngaged are true but landingGearExtended is false. If these conditions are not met, it should return 'Engine failure'`,
+    instructions: `Write a function intiateLaunch that accepts four boolean parameters primed, landingGearExtended, coreActivate, shieldsEngaged that returns "Launching" if primed, coreActivate, and shieldsEngaged are true but landingGearExtended is false. If these conditions are not met, it should return 'Engine failure'`,
     example: `initiateLaunch(true, false, true, true) => `,
     test: {
       args: [true, true, false, true],
-      expected: 'engine failure',
+      expected: 'Engine failure',
       testFunc: function (code, input, expected) {
         var passed, result, message;
         try {
