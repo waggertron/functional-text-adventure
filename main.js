@@ -425,7 +425,7 @@ function endStory() {
   $instruct.text('');
   $error.text('');
   editor.setValue('');
-  editor.setValue(JSON.stringify(inputs.join('\n')));
+  editor.setValue(JSON.stringify(inputs, null, "\n"));
   $instruct.text('The ship slowly sank into the black hole. To be continued...');
 }
 function startStory() {
